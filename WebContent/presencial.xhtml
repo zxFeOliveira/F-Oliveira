@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>presencial</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<h:messages globalOnly="true" />
+
+		<h:outputLabel for="n1" value="Nome:" />
+		<h:inputText id="n1" value="#{medicamentoBean.medicamento.nome}" />
+		<br />
+		<h:outputLabel for="n2" value="Concentração:" />
+		<h:inputText id="n2"
+			value="#{medicamentoBean.medicamento.concentracao}" />
+		<br />
+		<h:outputLabel for="n3" value="Laboratório:" />
+		<h:inputText id="n3"
+			value="#{medicamentoBean.medicamento.laboratorio}" />
+		<br />
+		<h:outputLabel for="n4" value="Lote:" />
+		<h:inputText id="n4" value="#{medicamentoBean.medicamento.lote}" />
+		<br />
+		<h:outputLabel for="n5" value="Data:" />
+		<h:inputText id="n5" value="#{medicamentoBean.medicamento.data}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:inputText>
+		<br />
+		<h:outputLabel for="n6" value="Tarja:" />
+		<h:selectOneMenu id="n6" value="#{medicamentoBean.medicamento.tarja}">
+			<f:selectItem  itemValue="amarela" itemLabel="amarela"/>
+			<f:selectItem  itemValue="vermelha" itemLabel="vermelha"/>
+			<f:selectItem  itemValue="preta" itemLabel="preta"/>
+			<f:selectItem  itemValue="não tarjada" itemLabel="não tarjada"/>		
+		</h:selectOneMenu>
+		<br/>
+		
+		<h:commandButton action="#{medicamentoBean.cadastrar()}"
+			value="Enviar" />
+
+	</h:form>
+
+	<br />
+
+	<h:form>
+		<h:dataTable value="#{medicamentoBean.medicamentos}" var="medicamento">
+
+			<h:column>
+				<f:facet name="header">ID  </f:facet>
+				<h:outputText value="#{medicamento.id}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nome  </f:facet>
+				<h:outputText value="#{medicamento.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Concentracao  </f:facet>
+				<h:outputText value="#{medicamento.concentracao}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Laboratorio  </f:facet>
+				<h:outputText value="#{medicamento.laboratorio}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Lote  </f:facet>
+				<h:outputText value="#{medicamento.lote}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Data  </f:facet>
+				<h:outputText value="#{medicamento.data}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Tarja  </f:facet>
+				<h:outputText value="#{medicamento.tarja}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Ações:</f:facet>
+				<h:commandButton action="#{medicamentoBean.excluir(medicamento)}"
+					value="Excluir" />
+			</h:column>
+
+
+		</h:dataTable>
+
+	</h:form>
+
+</h:body>
+</html>
